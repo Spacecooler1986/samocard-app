@@ -1,0 +1,109 @@
+{
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "./configs/eslint",
+    "./configs/eslint/react",
+    "./configs/eslint/typescript",
+    "./configs/eslint/typescript-requiring-type-checking"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "tsconfigRootDir": "./",
+    "project": ["./tsconfig.json"]
+  },
+  "settings": {
+    "import/ignore": [
+      "node_modules"
+    ],
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "commonjs": true
+  },
+  "globals": {
+    "showAlert": true,
+    "scrollMonitor": true
+  },
+  "plugins": ["unused-imports"],
+  "rules": {
+//    "no-duplicate-case": "off", // this will turn off a rule
+//    "no-unused-vars": "warn", // this will notify violation but not output error
+//    "no-func-assign": "error", // this will notify violation and outputs error
+//    "unused-imports/no-unused-imports": "error",
+    "react/react-in-jsx-scope": "off",
+    "import/dynamic-import-chunkname": "off",
+    "prefer-destructuring": "warn"
+//    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+//    "no-undef": "off",
+//    "no-extra-semi": "warn",
+//    "semi": [ "error", "never" ]
+  },
+  "overrides": [{
+    "files": [
+      "postcss.config.js",
+      "vite.config.js",
+      "commitizen.config.js",
+      ".jest/**/*.js",
+      "scripts/**/*.js"
+    ],
+    "extends": "./configs/eslint/commonjs",
+    "env": {
+      "node": true
+    },
+    "settings": {
+      "import/resolver": false
+    }
+  }, {
+    "files": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test|pact).[jt]s?(x)"
+    ],
+    "extends": ["plugin:testing-library/react"],
+    "rules": {
+      "babel/camelcase": "off",
+      "testing-library/no-node-access": "off",
+      "@typescript-eslint/no-magic-numbers": "off",
+      "@typescript-eslint/naming-convention": "off"
+    }
+  }, {
+    "files": "*.ts?(x)",
+    "rules": {
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "objectLiteralProperty",
+          "format": [
+            "camelCase",
+            "PascalCase",
+            "UPPER_CASE",
+            // For rudderstack client params
+            "snake_case"
+          ],
+          // For aria attributes keys and custom properties
+          "filter": {
+            "regex": "^(aria-|--|data-qa)",
+            "match": false
+          }
+        }
+      ]
+    }
+  }, {
+    "files": "*.jsx",
+    "rules": {
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error"]
+    }
+  }],
+  "ignorePatterns": [
+    "/configs/**"
+  ]
+}
