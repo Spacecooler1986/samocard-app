@@ -1,0 +1,19 @@
+import { IconProps } from './types'
+
+export function WindowsIcon({ color, className }: IconProps) {
+  return (
+    <svg
+      className={className}
+      width='41'
+      height='41'
+      viewBox='0 0 41 41'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M3.00446 32.0446L17.4196 34.3928V21.9196H3.00446V32.0446ZM5.83481 24.7455H14.5937V31.0669L5.83481 29.6428V24.7455ZM21.0268 34.8571L38.0804 37.6339V21.9196H21.0268V34.8571ZM23.8571 24.7455H35.2545V34.3169L23.8571 32.4598V24.7455ZM21.0268 6.18746V19.0803H38.0804V3.36157L21.0268 6.18746ZM35.2545 16.2544H23.8616V8.58032L35.2589 6.69193V16.2544H35.2545ZM3.00446 19.0803H17.4196V6.65621L3.00446 9.04461V19.0803ZM5.83481 11.4375L14.5937 9.98657V16.2544H5.83481V11.4375Z'
+        fill={color ?? 'currentColor'}
+      />
+    </svg>
+  )
+}
