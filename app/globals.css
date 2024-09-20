@@ -17,6 +17,15 @@
 		@apply w-full h-full object-cover;
 	}
 
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.no-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
 	.content-tabs-container {
 		@apply flex flex-col gap-7;
 	}
@@ -30,7 +39,7 @@
 		max-width:
 			calc(theme('width.constructorSidebar') - calc(theme('width.constructorSidebarLine')) - 2 * theme('padding.constructorSidebarContentX'));
 		height: 33px;
-		overflow: hidden;
+		overflow: auto;
 	}
 
 	.sidebar-content-width {
@@ -38,23 +47,23 @@
 		calc(theme('width.constructorSidebar') - calc(theme('width.constructorSidebarLine')) - 2 * theme('padding.constructorSidebarContentX'));
 	}
 
-	.range-slider {
+	.range-slider.range-slider-custom {
 		@apply h-[3px] rounded-none bg-white-50;
 	}
 
-	.range-slider .range-slider__thumb[data-lower] {
+	.range-slider.range-slider-custom .range-slider__thumb[data-lower] {
 		@apply w-0 border-none after:hidden;
 	}
 
-	.range-slider .range-slider__range {
+	.range-slider.range-slider-custom .range-slider__range {
 		@apply bg-white;
 	}
 
-	.range-slider .range-slider__range {
+	.range-slider.range-slider-custom .range-slider__range {
 		@apply bg-white;
 	}
 
-	.range-slider .range-slider__thumb {
+	.range-slider.range-slider-custom .range-slider__thumb {
 		@apply w-4 h-4 bg-white;
 		@apply after:content-[''] after:absolute after:bottom-1/2 after:right-1/2 after:translate-x-1/2 after:translate-y-1/2;
 		@apply after:w-6 after:h-6 after:m-auto after:bg-white-50 after:rounded-full;
