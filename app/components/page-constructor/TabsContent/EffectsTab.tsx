@@ -9,6 +9,7 @@ import {
 } from '@/components/common/ui-kit'
 import { InputSize } from '@/types/ui'
 import { EffectsType } from '@/types/constructor'
+import { isEffectsType } from '@/utility/types'
 
 import { effectsContentTabs } from './tabs'
 import { BackgroundsSlider } from './BackgroundsSlider'
@@ -115,8 +116,8 @@ export function EffectsTab() {
             key={tab.value}
             value={tab.value}
           >
-            {tab.value in EffectsType
-              ? <EffectsContent type={tab.value as EffectsType} />
+            {isEffectsType(tab.value)
+              ? (<EffectsContent type={tab.value} />)
               : null}
           </TabContent>
         ))}
