@@ -1,0 +1,31 @@
+.vertical {
+  @apply flex gap-2.5 items-center justify-center;
+}
+
+.outlined {
+  @apply border border-black-70 text-black bg-transparent hover:border-blue-dark hover:text-blue-dark;
+}
+
+.gray {
+  @apply text-black bg-black-10 hover:bg-black-20;
+}
+
+.blue {
+  @apply text-white bg-blue hover:bg-blue-dark;
+}
+
+.pink {
+  @apply text-white bg-pink hover:bg-pink-dark;
+}
+
+.md {
+  @apply py-3 px-10 text-base rounded-10;
+}
+
+.lg {
+  @apply py-5 px-20 text-lg rounded-20;
+}
+
+.xl {
+  @apply py-7 px-25 text-2xl rounded-20;
+}

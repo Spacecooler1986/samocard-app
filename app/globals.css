@@ -2,28 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer utilities {
+	.wrapper-main {
+		@apply px-27.5;
+	}
+
+	.wrapper-max {
+		max-width: theme('screens.3xl');
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.image-cover {
+		@apply w-full h-full object-cover;
+	}
+
+	.content-tabs-container {
+		@apply flex flex-col gap-7;
+	}
+
+	.sidebar-tabs-container {
+		@apply grid grid-cols-[theme('width.constructorSidebarLine'),_1fr] w-full overflow-x-hidden;
+	}
+
+	.tabs-list-container {
+		width: 100%;
+		max-width:
+			calc(theme('width.constructorSidebar') - calc(theme('width.constructorSidebarLine')) - 2 * theme('padding.constructorSidebarContentX'));
+		height: 33px;
+		overflow: hidden;
+	}
+
+	.sidebar-content-width {
+		max-width:
+		calc(theme('width.constructorSidebar') - calc(theme('width.constructorSidebarLine')) - 2 * theme('padding.constructorSidebarContentX'));
+	}
+
+	.range-slider {
+		@apply h-[3px] rounded-none bg-white-50;
+	}
+
+	.range-slider .range-slider__thumb[data-lower] {
+		@apply w-0 border-none after:hidden;
+	}
+
+	.range-slider .range-slider__range {
+		@apply bg-white;
+	}
+
+	.range-slider .range-slider__range {
+		@apply bg-white;
+	}
+
+	.range-slider .range-slider__thumb {
+		@apply w-4 h-4 bg-white;
+		@apply after:content-[''] after:absolute after:bottom-1/2 after:right-1/2 after:translate-x-1/2 after:translate-y-1/2;
+		@apply after:w-6 after:h-6 after:m-auto after:bg-white-50 after:rounded-full;
+	}
+
+	.card-control-transition {
+		transition: 
+			width 0.3s 0.3s ease-in,
+			height 0.3s 0.3s ease-in,
+			padding 0.3s 0.3s ease-in,
+			box-shadow 0.3s 0s ease-in,
+			border 0.3s 0s ease-in;
+	}
+
+	.card-control-transition.active {
+		transition: 
+			width 0.3s 0s ease-in,
+			height 0.3s 0s ease-in,
+			padding 0.3s 0s ease-in,
+			box-shadow 0.3s 0.2s ease-in,
+			border 0.3s 0.2s ease-in;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+	font-size: 16px;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: normal;
-  }
+	@apply min-h-dvh flex flex-col font-normal text-black bg-white;
 }

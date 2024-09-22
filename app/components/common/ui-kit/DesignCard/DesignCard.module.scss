@@ -1,0 +1,15 @@
+.activeControlButton {
+  @apply min-w-20 w-min h-18 py-1.5 px-2.5 border border-blue /*shadow-card-control*/;
+}
+
+.inactiveControlButton {
+  @apply w-8 h-8 shadow-none;
+}
+
+.pink {
+  @apply bg-pink;
+}
+
+.gray {
+  @apply bg-black-30;
+}

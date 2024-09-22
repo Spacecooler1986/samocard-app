@@ -1,0 +1,66 @@
+.outlined {
+  input {
+    @apply border border-black-70;
+  }
+}
+
+.white {
+  input {
+    @apply text-black-70 bg-white placeholder:text-black-70;
+  }
+
+  .passwordButton {
+    @apply text-black-70;
+  }
+}
+  
+.gray {
+  input {
+    @apply text-black-50 bg-white-smoke placeholder:text-black-50;
+  }
+
+  .passwordButton {
+    @apply text-black-50;
+  }
+}
+
+.sm {
+  input {
+    @apply px-2.5;
+  }
+
+  &.withIcon {
+    input {
+      @apply pl-13 pr-2.5
+    }
+  }
+
+  .icon {
+    @apply left-2.5;
+  }
+  
+  .passwordButton {
+    @apply right-2.5;
+  }
+}
+
+.base {
+  input {
+    @apply px-5;
+  }
+  
+  &.withIcon {
+    input {
+      @apply pl-[62px] pr-5;
+    }
+  }
+
+  .icon {
+    @apply left-5;
+  }
+
+  .passwordButton {
+    @apply right-5;
+  }
+}
+
