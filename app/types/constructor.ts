@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import Konva from 'konva'
+import { FC, MutableRefObject } from 'react'
 
 export enum ConstructorSections {
   TEMPLATES = 'templates',
@@ -37,7 +38,7 @@ export interface IConstructorTab {
   value: ConstructorSections;
   title: string;
   icon: FC;
-  content: FC;
+  content: FC<{ stageRef?: MutableRefObject<Konva.Stage> }>
 }
 
 export interface IConstructorContentTab {

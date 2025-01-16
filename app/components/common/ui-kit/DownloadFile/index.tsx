@@ -1,20 +1,17 @@
 'use client'
 
-import { useCallback, useRef } from 'react'
+import { useRef } from 'react'
 
 import { ButtonColor, ButtonSize } from '@/types/ui'
 import { Button } from '@/components/common/ui-kit'
 
 interface DownloadFileProps {
-  className?: string;
+  className?: string
+  onDownload: () => void
 }
 
-export function DownloadFile({ className }: DownloadFileProps) {
+export function DownloadFile({ className, onDownload }: DownloadFileProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
-
-  const onButtonClick = useCallback(() => {
-    fileInputRef.current?.click()
-  }, [])
 
   return (
     <div className={className}>
@@ -29,7 +26,7 @@ export function DownloadFile({ className }: DownloadFileProps) {
         color={ButtonColor.PINK}
         className='w-full max-w-full'
         type='button'
-        onClick={onButtonClick}
+        onClick={onDownload}
       >
         Загрузить файлы
       </Button>

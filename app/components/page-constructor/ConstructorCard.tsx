@@ -1,7 +1,15 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import {
+  MutableRefObject,
+  ReactNode,
+  useCallback,
+  useState,
+} from 'react'
 import clsx from 'clsx'
+import Konva from 'konva'
+import { KonvaEventObject } from 'konva/lib/Node'
+import { useDispatch } from 'react-redux'
 
 import {
   DeleteIcon,
@@ -13,8 +21,13 @@ import {
   SunIcon,
   HolderIcon,
   DesignCardControl,
+  Button,
 } from '@/components/common/ui-kit'
-import { DesignCardHeaderColor } from '@/types/ui'
+import { ButtonSize, DesignCardHeaderColor } from '@/types/ui'
+import { cardImageAction } from '@/store/cardImage'
+import { useStageSize } from '@/hooks/useStageSize'
+
+import { ConstructorCardStage } from './ConstructorCardStage'
 
 const cardControls = [
   {
@@ -54,7 +67,23 @@ const cardControls = [
   },
 ]
 
-export function ConstructorCard() {
+interface ConstructorCardProps {
+  stageRef: MutableRefObject<Konva.Stage>
+  children: ReactNode
+  isEmpty?: boolean
+  onSelect: (e?: KonvaEventObject<MouseEvent>, itemList?: Konva.Node[]) => void
+}
+
+export default function ConstructorCard({
+  children,
+  stageRef,
+  isEmpty,
+  onSelect,
+}: ConstructorCardProps) {
+  const dispatch = useDispatch()
+  const ref = stageRef.current
+  const { stageContainerRef, stageHeight, stageWidth } = useStageSize()
+
   const [activeControlId, setActiveControlId] = useState<string | null>(
     null
   )
@@ -62,6 +91,10 @@ export function ConstructorCard() {
   const handleControlClick = useCallback((id: string) => {
     setActiveControlId(id)
   }, [])
+
+  const applyChanges = useCallback(() => {
+    dispatch(cardImageAction.setUri(ref?.toDataURL() ?? ''))
+  }, [dispatch, ref])
 
   return (
     <DesignCard
@@ -85,7 +118,31 @@ export function ConstructorCard() {
           ))}
         </div>
       )}
-      content={null}
+      content={(
+        <div className='flex flex-col gap-10 items-center w-full'>
+          <div
+            ref={stageContainerRef}
+            className='relative w-[60%] pb-[80%] overflow-hidden'
+          >
+            <ConstructorCardStage
+              className='absolute top-0 left-0 w-full h-full'
+              stageRef={stageRef}
+              width={stageWidth}
+              height={stageHeight}
+              onSelect={onSelect}
+            >
+              {children}
+            </ConstructorCardStage>
+          </div>
+          <Button
+            size={ButtonSize.LG}
+            onClick={applyChanges}
+            disabled={isEmpty}
+          >
+            Применить
+          </Button>
+        </div>
+      )}
       className='w-[40%] pb-[60%] 3xl:w-[500px] 3xl:h-[750px]'
     />
   )
