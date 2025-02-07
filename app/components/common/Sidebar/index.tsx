@@ -15,8 +15,6 @@ interface SidebarProps {
 export function Sidebar({ close, isOpen }: SidebarProps) {
   const { modalsContainer } = useModalsContainer()
 
-  console.log('IS OPEN > ', isOpen)
-
   const modal = (
     <AnimatePresence>
       {isOpen && (

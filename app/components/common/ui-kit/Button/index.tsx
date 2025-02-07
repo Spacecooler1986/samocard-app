@@ -31,7 +31,7 @@ export function Button({
       {...props}
       className={clsx(
         className,
-        'transition-all',
+        'transition-all disabled:opacity-30',
         outlined ? [styles.outlined] : styles[color],
         styles[size],
         {

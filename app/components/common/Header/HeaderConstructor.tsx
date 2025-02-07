@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
 
 import {
   Button,
@@ -9,12 +12,17 @@ import {
   UserIcon,
 } from '@/components/common/ui-kit'
 import { ButtonColor, ButtonSize } from '@/types/ui'
+import { useExport } from '@/hooks'
+import { getCardImageUri } from '@/store/cardImage'
 
 interface HeaderConstructorProps {
   openMenu: () => void;
 }
 
 export function HeaderConstructor({ openMenu }: HeaderConstructorProps) {
+  const imageUri = useSelector(getCardImageUri)
+  const { handleExport } = useExport(imageUri)
+
   return (
     <header className='relative z-10 shadow-header py-5 text-base'>
       <div className='flex justify-between items-center gap-10 wrapper-main wrapper-max'>
@@ -61,6 +69,7 @@ export function HeaderConstructor({ openMenu }: HeaderConstructorProps) {
                 <UploadIcon className='image-cover' />
               </span>
             )}
+            disabled={!imageUri}
           >
             Поделиться
           </Button>
@@ -73,6 +82,8 @@ export function HeaderConstructor({ openMenu }: HeaderConstructorProps) {
                 <DownloadIcon className='image-cover' />
               </span>
             )}
+            onClick={handleExport}
+            disabled={!imageUri}
           >
             Скачать
           </Button>

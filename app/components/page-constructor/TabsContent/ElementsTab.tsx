@@ -1,3 +1,6 @@
+import { useCallback } from 'react'
+import { nanoid } from '@reduxjs/toolkit'
+
 import {
   Tab,
   TabContent,
@@ -11,35 +14,72 @@ import {
   Input,
 } from '@/components/common/ui-kit'
 import { InputSize } from '@/types/ui'
+import { useItem } from '@/hooks'
+import { StageData } from '@/types'
 
 import { elementsContentTabs } from './tabs'
 
 function ElementsContent() {
+  const { createItem } = useItem()
+  const dataItemTypeKey = 'data-item-type'
+
+  const addCircle = useCallback(() => {
+    const newCircle = {
+      id: nanoid(),
+      attrs: {
+        [dataItemTypeKey]: 'circle',
+        x: 20,
+        y: 20,
+        stroke: 'black',
+        radius: 20,
+        fill: '#000',
+        draggable: true,
+      },
+      className: '',
+    }
+
+    createItem(newCircle as unknown as StageData)
+  }, [createItem])
+
+  const addRect = useCallback(() => {
+    const newRect = {
+      id: nanoid(),
+      attrs: {
+        [dataItemTypeKey]: 'rect',
+        x: 100,
+        y: 100,
+        width: 100,
+        height: 100,
+        fill: '#f00',
+        draggable: true,
+      },
+      className: '',
+    }
+
+    createItem(newRect as unknown as StageData)
+  }, [createItem])
+
   return (
     <div className='flex flex-wrap gap-x-5 gap-y-7 justify-content-start justify-items-start py-2.5'>
-      <div className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
+      <button
+        className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'
+        type='button'
+        onClick={addRect}
+      >
         <ReactangleIcon className='image-cover' />
-      </div>
-      <div className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
+      </button>
+      <button
+        className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'
+        type='button'
+        onClick={addCircle}
+      >
         <EllipseIcon className='image-cover' />
-      </div>
+      </button>
       <div className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
         <TriangleIcon className='image-cover' />
       </div>
       <div className='grup w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300 active'>
         <StarIcon className='image-cover group-[&.active]:shadow-xl' />
-      </div>
-      <div className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
-        <ReactangleIcon className='image-cover' />
-      </div>
-      <div className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
-        <EllipseIcon className='image-cover' />
-      </div>
-      <div className='w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
-        <TriangleIcon className='image-cover' />
-      </div>
-      <div className='grup w-16 h-16 text-white cursor-pointer [&.active]:scale-135 transition-transform duration-300'>
-        <StarIcon className='image-cover' />
       </div>
     </div>
   )

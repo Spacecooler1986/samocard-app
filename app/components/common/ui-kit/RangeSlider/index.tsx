@@ -1,7 +1,6 @@
 'use client'
 
 import { InputHTMLAttributes } from 'react'
-// @ts-expect-error no types for library
 import ReactRangeSlider from 'react-range-slider-input'
 
 import 'react-range-slider-input/dist/style.css'

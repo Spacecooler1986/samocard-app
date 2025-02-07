@@ -1,3 +1,7 @@
+'use client'
+
+import { MutableRefObject } from 'react'
+import Konva from 'konva'
 import clsx from 'clsx'
 
 import {
@@ -11,12 +15,16 @@ import { TabsDirection } from '@/types/ui'
 import { tabs } from './sidebarTabs'
 
 interface ConstructorSidebarProps {
+  stageRef: MutableRefObject<Konva.Stage>
   className?: string;
 }
 
 const INITIAL_TAB_VALUE = tabs[5].value
 
-export function ConstructorSidebar({ className }: ConstructorSidebarProps) {
+export default function ConstructorSidebar({
+  stageRef,
+  className,
+}: ConstructorSidebarProps) {
   return (
     <div
       className={clsx(
@@ -41,15 +49,19 @@ export function ConstructorSidebar({ className }: ConstructorSidebarProps) {
             </TabWidthIcon>
           ))}
         </TabsList>
-        {tabs.map((tab) => (
-          <TabContent
-            key={tab.value}
-            value={tab.value}
-            className='py-9 px-constructorSidebarContentX'
-          >
-            {Boolean(tab.content) && tab.content({})}
-          </TabContent>
-        ))}
+        {tabs.map((tab) => {
+          const Content = tab.content
+
+          return (
+            <TabContent
+              key={tab.value}
+              value={tab.value}
+              className='py-9 px-constructorSidebarContentX'
+            >
+              {Content && <Content stageRef={stageRef} />}
+            </TabContent>
+          )
+        })}
       </Tabs>
     </div>
   )
