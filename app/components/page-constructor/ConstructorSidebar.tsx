@@ -15,7 +15,7 @@ import { TabsDirection } from '@/types/ui'
 import { tabs } from './sidebarTabs'
 
 interface ConstructorSidebarProps {
-  stageRef: MutableRefObject<Konva.Stage | null>
+  stageRef: MutableRefObject<Konva.Stage>
   className?: string;
 }
 

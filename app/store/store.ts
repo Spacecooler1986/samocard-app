@@ -6,7 +6,7 @@ import { stageDataReducer } from './stageData'
 import { cardImageReducer } from './cardImage'
 
 export type StoreState = {
-  stageData: EntityState<StageData, StageData['id']>;
+  stageData: EntityState<StageData>;
   cardImage: CardImage;
 };
 

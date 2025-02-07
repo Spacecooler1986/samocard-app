@@ -1,5 +1,3 @@
-'use client'
-
 import { RefObject, useRef } from 'react'
 import Konva from 'konva'
 import { Text } from 'react-konva'

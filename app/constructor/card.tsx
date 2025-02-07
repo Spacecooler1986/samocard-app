@@ -12,10 +12,10 @@ import { StageData } from '@/types'
 import { useDragAndDrop, useItem, useSelection, useTransformer } from '@/hooks'
 
 interface IProps {
-  ref: MutableRefObject<Konva.Stage>
+  stageRef: MutableRefObject<Konva.Stage>
 }
 
-export default function Card({ ref }: IProps) {
+export default function Card({ stageRef }: IProps) {
   const { stageData } = useItem()
   const { onDragEndFrame, onDragStart } = useDragAndDrop()
   const transformer = useTransformer()
@@ -81,7 +81,7 @@ export default function Card({ ref }: IProps) {
   return (
     <div className='grow flex flex-col justify-center items-center py-10'>
       <ConstructorCard
-        stageRef={ref}
+        stageRef={stageRef}
         onSelect={onSelectItem}
         isEmpty={!stageData?.length}
       >

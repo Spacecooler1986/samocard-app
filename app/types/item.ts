@@ -3,8 +3,10 @@ import { KonvaEventObject } from 'konva/lib/Node'
 
 import { StageData } from './stage'
 
+type ItemType<T extends string = string> = T & 'circle' | 'rect' | 'image' | 'text'
+
 export type ItemData = {
-  'data-item-type': string
+  'data-item-type': ItemType
   id?: string
   x: number
   y: number
@@ -14,11 +16,6 @@ export type ItemData = {
   draggable?: boolean
   zIndex?: number
   updatedAt?: number
-  scaleX?: number
-  scaleY?: number
-  opacity?: number
-  rotation?: number
-  src?: string
 } & Record<string, unknown>
 
 export type ItemProps = {

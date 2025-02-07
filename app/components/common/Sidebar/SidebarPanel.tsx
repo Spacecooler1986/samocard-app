@@ -1,8 +1,4 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
-import { useCallback } from 'react'
 
 import {
   Button,
@@ -21,12 +17,6 @@ interface SidebarPanelProps {
 }
 
 export function SidebarPanel({ close }: SidebarPanelProps) {
-  const router = useRouter()
-
-  const handleCreateClick = useCallback(() => {
-    void router.push('/constructor')
-  }, [router])
-
   return (
     <motion.div
       className='
@@ -66,7 +56,6 @@ export function SidebarPanel({ close }: SidebarPanelProps) {
           size={ButtonSize.MD}
           color={ButtonColor.BLUE}
           className='w-full'
-          onClick={handleCreateClick}
         >
           Создать дизайн
         </Button>

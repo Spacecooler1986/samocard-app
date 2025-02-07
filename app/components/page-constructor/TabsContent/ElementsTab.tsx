@@ -21,19 +21,19 @@ import { elementsContentTabs } from './tabs'
 
 function ElementsContent() {
   const { createItem } = useItem()
+  const dataItemTypeKey = 'data-item-type'
 
   const addCircle = useCallback(() => {
     const newCircle = {
       id: nanoid(),
       attrs: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'data-item-type': 'circle',
-        'x': 20,
-        'y': 20,
-        'stroke': 'black',
-        'radius': 20,
-        'fill': '#000',
-        'draggable': true,
+        [dataItemTypeKey]: 'circle',
+        x: 20,
+        y: 20,
+        stroke: 'black',
+        radius: 20,
+        fill: '#000',
+        draggable: true,
       },
       className: '',
     }
@@ -45,14 +45,13 @@ function ElementsContent() {
     const newRect = {
       id: nanoid(),
       attrs: {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'data-item-type': 'rect',
-        'x': 100,
-        'y': 100,
-        'width': 100,
-        'height': 100,
-        'fill': '#f00',
-        'draggable': true,
+        [dataItemTypeKey]: 'rect',
+        x: 100,
+        y: 100,
+        width: 100,
+        height: 100,
+        fill: '#f00',
+        draggable: true,
       },
       className: '',
     }

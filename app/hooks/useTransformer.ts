@@ -4,6 +4,7 @@ import { RefObject, useRef } from 'react'
 import { Stage } from 'konva/lib/Stage'
 
 import transformerList from '@/config/transformer.json'
+import { StageData } from '@/types'
 
 import { useItem } from './useItem'
 
@@ -12,11 +13,10 @@ export const useTransformer = () => {
   const { updateItem } = useItem()
 
   const onTransformEnd = (e: KonvaEventObject<Event>) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     updateItem(e.target.id(), () => ({
       ...e.target.attrs,
       updatedAt: Date.now(),
-    }))
+    }) as StageData['attrs'])
 
     const stage = e.target.getStage()
 
@@ -29,8 +29,8 @@ export const useTransformer = () => {
     let nodeStatus = 'default'
 
     if (transformer.nodes().length === 1) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
-      nodeStatus = transformer.getNode().attrs['data-item-type']
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      nodeStatus = transformer.getNode().attrs['data-item-type'] as string
     }
 
     for (const field in (transformerList as Record<string, Konva.TransformerConfig>)[nodeStatus]) {

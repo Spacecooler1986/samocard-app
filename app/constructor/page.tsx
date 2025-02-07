@@ -27,7 +27,7 @@ export default function Home() {
         stageRef={stageRef}
         className='w-full max-w-full'
       />
-      <Card ref={stageRef} />
+      <Card stageRef={stageRef} />
     </div>
   )
 }

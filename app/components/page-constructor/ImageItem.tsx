@@ -1,14 +1,13 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import Konva from 'konva'
 import { Image as KonvaImage } from 'react-konva'
 
-import { ItemData, OverrideItemProps } from '@/types/item'
+import { OverrideItemProps } from '@/types/item'
+import { StageData } from '@/types/stage'
 import { useDragAndDrop } from '@/hooks/useDragAndDrop'
 
 type IProps = OverrideItemProps<{
-  data: { attrs: ItemData, id: string }
+  data: StageData
   e?: DragEvent
 }>
 
@@ -31,14 +30,12 @@ export default function ImageItem({ data, onSelect }: IProps) {
 
     newImage.crossOrigin = 'Anonymous'
 
-    let source
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    if (typeof attrs.src === 'string' && attrs.src.startsWith('find:')) {
-      source = attrs.src
-    } else {
-      source = attrs.src
-    }
+    const source = attrs.src
+    // if (typeof attrs.src === 'string' && attrs.src.startsWith('find:')) {
+    //   source = attrs.src
+    // } else {
+    //   source = attrs.src
+    // }
 
     if (typeof source === 'string' && source.startsWith('data:')) {
       Konva.Image.fromURL(source, (imageNode: Konva.Image) => {
@@ -61,7 +58,9 @@ export default function ImageItem({ data, onSelect }: IProps) {
       return
     }
 
-    newImage.src = source as string
+    if (source && typeof source === 'string') {
+      newImage.src = source
+    }
   }, [attrs.src])
 
   return (
@@ -78,8 +77,8 @@ export default function ImageItem({ data, onSelect }: IProps) {
       scaleX={Number(attrs.scaleX)}
       scaleY={Number(attrs.scaleY)}
       fill={attrs.fill ?? 'transparent'}
-      opacity={attrs.opacity ?? 1}
-      rotation={attrs.rotation ?? 0}
+      opacity={Number(attrs.opacity) ?? 1}
+      rotation={Number(attrs.rotation) ?? 0}
       draggable
       onDragMove={onDragStart}
       onDragEnd={onDragEndFrame}

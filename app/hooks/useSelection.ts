@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import Konva from 'konva'
-import { KonvaEventObject, Node } from 'konva/lib/Node'
+import { KonvaEventObject } from 'konva/lib/Node'
 
 import { StageData } from '@/types/stage'
 
@@ -11,8 +11,7 @@ export function useSelection(transformer: ReturnType<typeof useTransformer>) {
   const [selectedItems, setSelectedItems] = useState<Konva.Node | null>()
   const { updateItem } = useItem()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSelectItem = useCallback((e?: KonvaEventObject<MouseEvent>, _itemList?: Node[]) => {
+  const onSelectItem = useCallback((e?: KonvaEventObject<MouseEvent>) => {
     if (!transformer.transformerRef.current || !e) {
       return
     }
@@ -30,11 +29,13 @@ export function useSelection(transformer: ReturnType<typeof useTransformer>) {
 
     const target = e?.target as Konva.Node
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    updateItem(String(target.id() || target.attrs.id), (item: StageData) => ({
-      ...item?.attrs,
-      updatedAt: Date.now(),
-    }))
+    if (target) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-member-access
+      updateItem(target.id() || target.attrs.id, (item: StageData) => ({
+        ...item?.attrs,
+        updatedAt: Date.now(),
+      }))
+    }
   }, [transformer, updateItem])
 
   return {

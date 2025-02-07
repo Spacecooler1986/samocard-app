@@ -18,7 +18,6 @@ const stageDataEntity = createEntityAdapter<StageData>({
   },
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 export const stageDataSlice = createSlice({
   name: 'STAGE',
   initialState: stageDataEntity.setAll(stageDataEntity.getInitialState(), []),
@@ -38,7 +37,7 @@ export const stageDataSlice = createSlice({
           action.payload.map((item) => ({
             id: item.id,
             changes: item.attrs,
-          })) as ReadonlyArray<Update<StageData, StageData['id']>>,
+          })) as readonly Update<StageData>[],
         )
         return
       }
