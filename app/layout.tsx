@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import { Header } from '@/components/common/Header'
+import { AppProviders } from '@/components/common/AppProviders'
 
 import './globals.css'
 
@@ -21,19 +22,21 @@ export default function RootLayout({ children }: Readonly<{
   return (
     <html lang='ru'>
       <body className={inter.className}>
-        <div className='grow flex flex-col'>
-          <Header
-            isAuthorized
-            isConstructor
-          />
+        <AppProviders>
+          <div className='grow flex flex-col'>
+            <Header
+              isAuthorized
+              isConstructor
+            />
 
-          <main className='grow flex flex-col'>
-            {children}
-          </main>
-        </div>
+            <main className='grow flex flex-col'>
+              {children}
+            </main>
+          </div>
 
-        <div id='modals' />
-        <div id='sidebar' />
+          <div id='modals' />
+          <div id='sidebar' />
+        </AppProviders>
       </body>
     </html>
   )

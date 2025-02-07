@@ -2,11 +2,19 @@
   input {
     @apply border border-black-70;
   }
+
+  .icon {
+    @apply text-black-70;
+  }
 }
 
 .white {
   input {
     @apply text-black-70 bg-white placeholder:text-black-70;
+  }
+
+  .icon {
+    @apply text-black-70;
   }
 
   .passwordButton {
@@ -17,6 +25,10 @@
 .gray {
   input {
     @apply text-black-50 bg-white-smoke placeholder:text-black-50;
+  }
+
+  .icon {
+    @apply text-black-50;
   }
 
   .passwordButton {

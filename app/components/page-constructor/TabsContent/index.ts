@@ -1,0 +1,6 @@
+export * from './BackgroundTab'
+export * from './EffectsTab'
+export * from './ElementsTab'
+export * from './TemplatesTab'
+export * from './TextTab'
+export * from './UploadTab'

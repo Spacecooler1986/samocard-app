@@ -1,22 +1,30 @@
 'use client'
 
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
 
 import styles from './DesignCard.module.scss'
 
 interface ControlProps {
+  id: string;
   icon: ReactNode;
   label?: string;
   isActive?: boolean;
-  onClick: () => void;
+  onClick: (id: string) => void;
 }
 
 const DEFAULT_CONTROL_WIDTH = 32
 const DEFAULT_CONTROL_PADDING_X = 10
 
 export function DesignCardControl({
+  id,
   icon,
   label,
   isActive,
@@ -39,6 +47,10 @@ export function DesignCardControl({
     setWidth(labelWidth + 2 * DEFAULT_CONTROL_PADDING_X)
   }, [isActive])
 
+  const handleClick = useCallback(() => {
+    onClick(id)
+  }, [id, onClick])
+
   return (
     <button
       className={clsx(
@@ -53,7 +65,7 @@ export function DesignCardControl({
       }}
       type='button'
       aria-label={label}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <span className='w-8 h-8'>
         {icon}

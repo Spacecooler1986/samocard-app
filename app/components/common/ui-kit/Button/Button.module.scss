@@ -3,19 +3,35 @@
 }
 
 .outlined {
-  @apply border border-black-70 text-black bg-transparent hover:border-blue-dark hover:text-blue-dark;
+  @apply border border-black-70 text-black bg-transparent;
+
+  &:not([disabled]) {
+    @apply hover:border-blue-dark hover:text-blue-dark;
+  }
 }
 
 .gray {
-  @apply text-black bg-black-10 hover:bg-black-20;
+  @apply text-black bg-black-10;
+
+  &:not([disabled]) {
+    @apply hover:bg-black-20;
+  }
 }
 
 .blue {
-  @apply text-white bg-blue hover:bg-blue-dark;
+  @apply text-white bg-blue;
+
+  &:not([disabled]) {
+    @apply hover:bg-blue-dark;
+  }
 }
 
 .pink {
-  @apply text-white bg-pink hover:bg-pink-dark;
+  @apply text-white bg-pink;
+
+  &:not([disabled]) {
+    @apply hover:bg-pink-dark;
+  }
 }
 
 .md {
@@ -23,7 +39,7 @@
 }
 
 .lg {
-  @apply py-5 px-20 text-lg rounded-20;
+  @apply py-5 px-20 text-lg rounded-20 font-semibold;
 }
 
 .xl {

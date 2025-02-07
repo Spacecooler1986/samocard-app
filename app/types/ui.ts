@@ -12,15 +12,20 @@ export enum ButtonSize {
 
 export enum InputColor {
   WHITE = 'white',
-  GRAY = 'gray'
+  GRAY = 'gray',
 }
 
 export enum InputSize {
   SM = 'sm',
-  BASE = 'base'
+  BASE = 'base',
 }
 
 export enum DesignCardHeaderColor {
   PINK = 'pink',
   GRAY = 'gray',
+}
+
+export enum TabsDirection {
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical',
 }
